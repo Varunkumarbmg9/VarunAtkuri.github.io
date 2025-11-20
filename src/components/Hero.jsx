@@ -120,8 +120,7 @@ const Hero = () => {
                     transition={{ delay: 0.2 }}
                     className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-tight"
                 >
-                    Varun Kumar <br className="md:hidden" />
-                    <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary pb-2">Atkuri</span>
+                    Varun Kumar <span className="text-primary">Atkuri</span>
                 </motion.h1>
 
                 <motion.div
