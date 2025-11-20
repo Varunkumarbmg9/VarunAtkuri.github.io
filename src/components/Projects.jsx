@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import Tilt from 'react-parallax-tilt';
+import { FaBriefcase, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
 const experiences = [
     {
@@ -47,7 +49,7 @@ const experiences = [
 
 const Projects = () => {
     return (
-        <section id="projects" className="py-20 px-4 bg-white/5">
+        <section id="projects" className="py-20 px-4 relative">
             <div className="max-w-6xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
@@ -58,7 +60,10 @@ const Projects = () => {
                     Professional <span className="text-primary">Experience</span>
                 </motion.h2>
 
-                <div className="space-y-8">
+                <div className="relative space-y-12">
+                    {/* Timeline Line */}
+                    <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-white/10 transform -translate-x-1/2 hidden md:block" />
+
                     {experiences.map((exp, index) => (
                         <motion.div
                             key={index}
@@ -66,34 +71,62 @@ const Projects = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-dark border border-white/10 rounded-xl p-8 hover:border-primary/50 transition-colors"
+                            className={`relative flex flex-col md:flex-row gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''
+                                }`}
                         >
-                            <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
-                                <div>
-                                    <h3 className="text-2xl font-bold text-white">{exp.role}</h3>
-                                    <p className="text-primary text-lg">{exp.company}</p>
-                                </div>
-                                <div className="text-right mt-2 md:mt-0">
-                                    <p className="text-gray-400">{exp.period}</p>
-                                    <p className="text-sm text-gray-500">{exp.location}</p>
-                                </div>
+                            {/* Timeline Dot */}
+                            <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-primary rounded-full transform -translate-x-1/2 mt-8 border-4 border-dark z-10 hidden md:block" />
+
+                            {/* Content Card */}
+                            <div className="flex-1">
+                                <Tilt
+                                    glareEnable={true}
+                                    glareMaxOpacity={0.3}
+                                    glareColor="#38bdf8"
+                                    glarePosition="all"
+                                    scale={1.02}
+                                    tiltMaxAngleX={5}
+                                    tiltMaxAngleY={5}
+                                    className="h-full"
+                                >
+                                    <div className={`bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 group h-full ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'
+                                        }`}>
+                                        <div className={`flex flex-col gap-2 mb-4 ${index % 2 === 0 ? 'items-start' : 'md:items-end'
+                                            }`}>
+                                            <h3 className="text-2xl font-bold text-white group-hover:text-primary transition-colors">{exp.role}</h3>
+                                            <div className="flex items-center gap-2 text-primary text-lg font-medium">
+                                                <FaBriefcase className="text-sm" />
+                                                {exp.company}
+                                            </div>
+                                            <div className="flex flex-wrap gap-4 text-sm text-gray-400">
+                                                <span className="flex items-center gap-1"><FaCalendarAlt /> {exp.period}</span>
+                                                <span className="flex items-center gap-1"><FaMapMarkerAlt /> {exp.location}</span>
+                                            </div>
+                                        </div>
+
+                                        <p className="text-gray-300 mb-6 italic border-l-2 border-primary/30 pl-4">{exp.description}</p>
+
+                                        <ul className={`list-disc list-inside space-y-2 mb-6 text-gray-400 text-sm leading-relaxed ${index % 2 === 0 ? 'text-left' : 'md:text-right'
+                                            }`}>
+                                            {exp.achievements.map((item, i) => (
+                                                <li key={i}>{item}</li>
+                                            ))}
+                                        </ul>
+
+                                        <div className={`flex flex-wrap gap-2 ${index % 2 === 0 ? 'justify-start' : 'md:justify-end'
+                                            }`}>
+                                            {exp.tech.map(tech => (
+                                                <span key={tech} className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full border border-primary/20">
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </Tilt>
                             </div>
 
-                            <p className="text-gray-300 mb-6 italic">{exp.description}</p>
-
-                            <ul className="list-disc list-outside ml-5 space-y-2 mb-8 text-gray-400">
-                                {exp.achievements.map((item, i) => (
-                                    <li key={i}>{item}</li>
-                                ))}
-                            </ul>
-
-                            <div className="flex flex-wrap gap-2">
-                                {exp.tech.map(tech => (
-                                    <span key={tech} className="text-xs px-3 py-1 bg-white/5 rounded-full text-gray-300 border border-white/5">
-                                        {tech}
-                                    </span>
-                                ))}
-                            </div>
+                            {/* Empty space for timeline alignment */}
+                            <div className="flex-1 hidden md:block" />
                         </motion.div>
                     ))}
                 </div>

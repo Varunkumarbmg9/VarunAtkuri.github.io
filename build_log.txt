@@ -1,0 +1,29 @@
+
+> varun-portfolio@0.0.0 build
+> vite build
+
+vite v7.1.1 building for production...
+transforming...
+✓ 433 modules transformed.
+✗ Build failed in 811ms
+error during build:
+src/components/About.jsx (3:132): "SiMicrosoftazure" is not exported by "node_modules/react-icons/si/index.mjs", imported by "src/components/About.jsx".
+file: /Users/varunkumaratkuri/varun-portfolio/src/components/About.jsx:3:132
+
+1: import { motion } from 'framer-motion';
+2: import { FaPython, FaJava, FaAws, FaDocker, FaGitAlt } from 'react-icons/fa';
+3: import { SiSnowflake, SiApachespark, SiApacheairflow, SiTerraform, SiKubernetes, SiTableau, SiDbt, SiScala, SiMysql, SiGooglecloud, SiMicrosof...
+                                                                                                                                       ^
+4: 
+5: const skills = {
+
+    at getRollupError (file:///Users/varunkumaratkuri/varun-portfolio/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+    at error (file:///Users/varunkumaratkuri/varun-portfolio/node_modules/rollup/dist/es/shared/parseAst.js:397:42)
+    at Module.error (file:///Users/varunkumaratkuri/varun-portfolio/node_modules/rollup/dist/es/shared/node-entry.js:16875:16)
+    at Module.traceVariable (file:///Users/varunkumaratkuri/varun-portfolio/node_modules/rollup/dist/es/shared/node-entry.js:17327:29)
+    at ModuleScope.findVariable (file:///Users/varunkumaratkuri/varun-portfolio/node_modules/rollup/dist/es/shared/node-entry.js:14997:39)
+    at Identifier.bind (file:///Users/varunkumaratkuri/varun-portfolio/node_modules/rollup/dist/es/shared/node-entry.js:5394:40)
+    at CallExpression.bind (file:///Users/varunkumaratkuri/varun-portfolio/node_modules/rollup/dist/es/shared/node-entry.js:2781:28)
+    at CallExpression.bind (file:///Users/varunkumaratkuri/varun-portfolio/node_modules/rollup/dist/es/shared/node-entry.js:12058:15)
+    at Property.bind (file:///Users/varunkumaratkuri/varun-portfolio/node_modules/rollup/dist/es/shared/node-entry.js:2785:23)
+    at ObjectExpression.bind (file:///Users/varunkumaratkuri/varun-portfolio/node_modules/rollup/dist/es/shared/node-entry.js:2781:28)
